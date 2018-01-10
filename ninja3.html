@@ -25,7 +25,7 @@
           this._strength)
       }
 
-      drinkShake() {
+      drinkSake() {
         this._health += 10;
       }
 
@@ -40,17 +40,33 @@
         if (enemyNinja instanceof Ninja) {
           let healthToSubtract = this._strength * 15;
           enemyNinja._health -= healthToSubtract;
-          console.log(enemyNinja._name + " was kicked by " + this._name + " and lost " + healthToSubtract + " Health!");
+          console.log(enemyNinja._name + " was kicked by " + this._name + " and lost " + healthToSubtract +
+            " Health!");
         }
       }
+    }
 
+    class Sensei extends Ninja {
+      constructor(name) {
+        super(name);
+        this._name = name;
+        this._health = 200;
+        this._speed = 10;
+        this._strength = 10;
+        this._wisdom = 10;
+      }
+
+      speakWisdom() {
+        super.drinkSake();
+        console.log("A wise message!")
+      }
     }
     const ninja1 = new Ninja("Hyabusa");
     ninja1.sayName();
     // -> "My ninja name is Hyabusa!"
     ninja1.showStats();
     // -> "Name: Hayabusa, Health: 100, Speed: 3, Strength: 3"
-    ninja1.drinkShake();
+    ninja1.drinkSake();
     ninja1.showStats(); // only change health to 110
     const blueNinja = new Ninja("Goemon");
     const redNinja = new Ninja("Bill Gates");
@@ -63,6 +79,13 @@
     blueNinja.kick(redNinja);
     blueNinja.showStats()
     redNinja.showStats()
+
+    // example output
+    const superSensei = new Sensei("Master Splinter");
+    superSensei.speakWisdom();
+    // -> "What one programmer can do in one month, two programmers can do in two months."
+    superSensei.showStats();
+    // -> "Name: Master Splinter, Health: 210, Speed: 10, Strength: 10"
   </script>
 </head>
 
