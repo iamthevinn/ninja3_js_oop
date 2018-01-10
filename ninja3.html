@@ -1,15 +1,73 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script>
-        
-    </script>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    class Ninja {
+
+      constructor(name) {
+        this._name = name;
+        this._health = 100;
+        this._speed = 3;
+        this._strength = 3;
+      }
+
+      sayName() {
+        console.log("My ninja name is " + this._name);
+      }
+
+      showStats() {
+        console.log("Name: " + this._name + ", Health: " + this._health + ", Speed: " + this._speed + ", Strength: " +
+          this._strength)
+      }
+
+      drinkShake() {
+        this._health += 10;
+      }
+
+      punch(enemyNinja) {
+        if (enemyNinja instanceof Ninja) {
+          enemyNinja._health -= 5;
+          console.log(enemyNinja._name + " was punched by " + this._name + " and lost 5 Health!");
+        }
+      }
+
+      kick(enemyNinja) {
+        if (enemyNinja instanceof Ninja) {
+          let healthToSubtract = this._strength * 15;
+          enemyNinja._health -= healthToSubtract;
+          console.log(enemyNinja._name + " was kicked by " + this._name + " and lost " + healthToSubtract + " Health!");
+        }
+      }
+
+    }
+    const ninja1 = new Ninja("Hyabusa");
+    ninja1.sayName();
+    // -> "My ninja name is Hyabusa!"
+    ninja1.showStats();
+    // -> "Name: Hayabusa, Health: 100, Speed: 3, Strength: 3"
+    ninja1.drinkShake();
+    ninja1.showStats(); // only change health to 110
+    const blueNinja = new Ninja("Goemon");
+    const redNinja = new Ninja("Bill Gates");
+    blueNinja.showStats()
+    redNinja.showStats()
+    redNinja.punch(blueNinja);
+    // -> "Goemon was punched by Bill Gates and lost 5 Health!"
+    blueNinja.showStats()
+    redNinja.showStats()
+    blueNinja.kick(redNinja);
+    blueNinja.showStats()
+    redNinja.showStats()
+  </script>
 </head>
+
 <body>
-    
+
 </body>
+
 </html>
